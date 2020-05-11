@@ -1,5 +1,5 @@
 %% ASSIGNMENT OF AERODYNAMICS - 29/05/2020
-%AUTHORS: Miquel Badia, Daniel Longaron, Aranu Reyes
+%AUTHORS: Miquel Badia, Daniel Longaron, Arnau Reyes
 
 %This program computes the lift and drag distribution along a wing using
 %the lifting line method
