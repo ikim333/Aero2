@@ -1,7 +1,8 @@
 %% FUNCTION CIRCULATION
-% aquetsa funció calcula la circulació en cada punt de l'ala estudiat
-% mitjançant el mètode 2 a partir del coeficient d'influència a i el terme
-% independent b, calculats a continuació (TEMA 4, DIAPOS 17 i 23)
+
+% this function computes the circulation at each point of the wing
+% throughout method 2 with the influent coefficient a and the independent
+% term b, calculated next (TEMA 4, DIAPO 17 & 23)
 
 function [gamma, gamma_nd] = circulation (N, c, U_inf, cl_0, cl_alpha, alpha, twist, Ur, X, Xp, K_v)
 

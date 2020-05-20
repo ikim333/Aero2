@@ -1,3 +1,8 @@
+%% FUNCTION COORDINATES
+
+% this function computes the necessary coordinates and other terms to
+% proceed with the case studied
+
 function [X, Xp, c, twist, dy] = coordinates (N, b, twist_t, c_t, c_r)
 
 inc_theta = pi/N;

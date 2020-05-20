@@ -1,7 +1,7 @@
-%%FUNCTION FINITE VORTEX
-% aquesta funció calcula la velocitat induïda en el punt P donats P_1 i
-% P_2, els quals formen una linia de vòrtex finita amb aquests punts en els
-% seus extrems
+%% FUNCTION FINITE VORTEX
+
+% this function computes the induced velocity at point P with given P_1 and
+% P_2, which create a finite vortex line with this points at its extremes.
 
 function V = finite_vortex(X1,X2,Xp)
 

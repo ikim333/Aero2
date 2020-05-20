@@ -1,6 +1,7 @@
-%%FUNCTION SEMI INFINITE VORTEX
-% aquesta funció calcula la velocitat en un punt P si el punt P_1 tendeix a
-% l'infinit (TEMA 4, DIAPO 9)
+%% FUNCTION SEMI INFINITE VORTEX
+
+% this function computes the velocity at point P if point P_1 tends to
+% infinite (TEMA 4, DIAPO 9)
 
 function V = semi_infinite_vortex(Ur,X2,Xp)
 

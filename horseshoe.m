@@ -1,7 +1,8 @@
 %% FUNCTION HORSESHOE
-% aquesta funció calcula la velocitat induïda en un punt en funció de dos
-% punts (que seran consecutius), formada per un vòrtex finit i dos infinits
-% (TEMA4, DIAPO 10)
+
+% this function computes the induced velocity at a point as the function of
+% 2 consecutive points, it is formed by a finite vortex and two infinte
+% vortex (TEMA 4, DIAPO10)
 
 function V = horseshoe(Ur,X1,X2,Xp)
 
