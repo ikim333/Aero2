@@ -1,15 +1,7 @@
 %% ASSIGNMENT OF AERODYNAMICS - 29/05/2020
 %AUTHORS: Miquel Badia, Daniel Longaron, Arnau Reyes
 
-%This program computes the lift and drag distribution along a wing using
-%the lifting line method
-
-%% EXERCISE 1
-
-% Students:
-%     Miquel Badia
-%     Arnau Reyes
-%     Daniel Longaron
+%% EXERCISE 1.1.
 
 clc
 clear all
@@ -36,7 +28,7 @@ K_v = [0,0,1];
 
 %% PREPROCESSING
 
-N = 164; %number of divisions
+N = 64; %number of divisions
 twist = zeros(N,1); %twist definition in each section
 X = zeros(N+1,3); %3 dimension case
 Xp = zeros(N,3); %coordinates of each section
@@ -55,26 +47,19 @@ c = zeros(N,1); %chord of each section
 % lifting line method 2
 
 % circulation
-[gamma, gamma_nd] = circulation (N, c, U_inf, cl_0, cl_alpha, alpha, twist, Ur, X, Xp, K_v);
+[a_ij, b_i] = coefficients (N, c, U_inf, cl_0, cl_alpha, alpha, twist, Ur, X, Xp, K_v);
 
-%lift coefficient and total lift
-Cl=zeros(N,1);
+[Cl, CL, CD] = method_2 (a_ij, b_i, c, dy, b, N, cl_0, cl_alpha, alpha, twist, s_wing);
 
-Cl = 2*gamma./c;
-
-CL = Cl'*dy/b;
-
-% drag coefficient and total drag
-alpha_ind = zeros(N,1);
-[alpha_ind, CD_i] = induced_drag (N, Cl, cl_0, cl_alpha, alpha, twist, alpha_ind, c, dy, s_wing);
-
-Cdv = 0.0063 - 0.0033.*Cl + 0.0068.*Cl.^2;
-
-CDv = Cdv'*dy/b;
-
-CD = CDv + CD_i
+CL
+CD
 
 %% REPRESENTATION OF RESULTS
+
+res = 'Plot results for exercise 1.1? (1 for YES, 0 for NO):  ';
+res = input(res);
+
+if res==1
 
 figure(1);
 plot(Xp(:,2),Cl(:));
@@ -82,6 +67,9 @@ grid on;
 grid minor;
 xlabel('y');
 ylabel('Cl');
+
+else
+end
 
 
 

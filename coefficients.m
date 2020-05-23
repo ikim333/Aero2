@@ -4,7 +4,7 @@
 % throughout method 2 with the influent coefficient a and the independent
 % term b, calculated next (TEMA 4, DIAPO 17 & 23)
 
-function [a, b] = circulation (N, c, U_inf, cl_0, cl_alpha, alpha, twist, Ur, X, Xp, K_v)
+function [a, b] = coefficients (N, c, U_inf, cl_0, cl_alpha, alpha, twist, Ur, X, Xp, K_v)
 
 a = zeros(N,N);
 b = zeros(N,1);
@@ -29,8 +29,5 @@ b = zeros(N,1);
             end
         end
     end
-    
-    gamma = a\b;
-    gamma_nd = gamma./c; %non-dimensional gamma
 
 end
