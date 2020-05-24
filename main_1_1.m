@@ -49,12 +49,16 @@ c = zeros(N,1); %chord of each section
 % circulation
 [a_ij, b_i] = coefficients (N, c, U_inf, cl_0, cl_alpha, alpha, twist, Ur, X, Xp, K_v);
 
-[Cl, CL, CD] = method_2 (a_ij, b_i, c, dy, b, N, cl_0, cl_alpha, alpha, twist, s_wing);
+[Cl, CL] = CL_method_2 (a_ij, b_i, c, dy, b, N, cl_0, cl_alpha, alpha, twist, s_wing);
+[CD, CD_i] = CD_method_2 (N, Cl, cl_0, cl_alpha, alpha, twist, c, s_wing, dy, b);
 
+
+%% RESULTS
+
+disp('Results por part 1.1')
 CL
+CD_i
 CD
-
-%% REPRESENTATION OF RESULTS
 
 res = 'Plot results for exercise 1.1? (1 for YES, 0 for NO):  ';
 res = input(res);
