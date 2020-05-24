@@ -1,4 +1,4 @@
-function z=2_profile_coord(x,p,m)
+function z=profile_coord_ex2(x,p,m)
 if x<p
     z=(m/p^2)*(2*p*x-x^2);
 else
