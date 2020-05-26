@@ -75,7 +75,9 @@ ylabel('-C_p');
 title("Distribució Cp");
 
 %% Panels convergence
-Nvect = [16 32 64 128 256];
+Nvect = [16 32 64 128 256 512 1024];
+
+% CL and CM_LE matrix for different panels and different alpha values
 
 CL_mat = zeros(5);
 CM_LE_mat = zeros(5);
@@ -89,56 +91,57 @@ for k=1:5
     end
 end
 
-Npanels = 1:10:510;
-N = size(Npanels,2)-1;
+
+% Error calculation at fixed Alpha 
+s = size(Nvect, 2);
 r = 3;
+CL_vectorplot = zeros(1,s);
+CMLE_vectorplot = zeros(1,s);
+error_CL = zeros(1,s-1);
+error_CMLE = zeros(1,s-1);
 
-CL_N = zeros(1,N+1);
-CM_LE_N = zeros(1,N+1);
-
-for k=1:N+1
-    N_calc = Npanels(k);
-    [res1, res2, cp, ctrl_points,X] = functionex2(r,alpha,N_calc);
-    CL_N(k) = res1;
-    CM_LE_N(k) = res2;
+for k=1:s
+    N = Nvect(k);
+        [res1, res2, cp, ctrl_points,X] = functionex2(r,alpha,N);
+        CL_vectorplot(k) = res1;
+        CMLE_vectorplot(k) = res2;
+        if k >=2
+            error_CL(k-1) = abs(CL_vectorplot(k)-CL_vectorplot(k-1));
+            error_CMLE(k-1) =  abs(CL_vectorplot(k)-CL_vectorplot(k-1));
+        end
 end
 
-error_cl = zeros(1,N+1);
-error_cmle = zeros(1,N+1);
-for i = 1:N
-    error_cl (i) = CL_N(i+1) - CL_N(i);
-    error_cmle (i) = CL_N(i+1) - CL_N(i);
+Nplot = zeros(1,s-1);
+for i = 1:(s-1)
+   Nplot(i) = Nvect(i); 
 end
 
-error_cl(N+1) = error_cl(N);
-error_cmle(N+1) = error_cmle(N);
- 
 %error calcul cl
 figure;
 grid on;
-xlabel('N');
+xlabel('N (panels)');
 
 yyaxis left;
-plot(Npanels,CL_N);
-ylabel('Cl');
+plot(Nplot,CL_vectorplot(1:end-1));
+ylabel('CL');
 %axis([0 1 -0.2 0.2])
     
 yyaxis right;
-plot(Npanels,error_cl);
-ylabel('error');
-title("Error CMLE");
+plot(Nplot,error_CL);
+ylabel('Error CL');
+title("Error CL & CL vs number of panels");
 
 %error calcul cmle
 figure;
 grid on;
-xlabel('N');
+xlabel('N (panels)');
 
 yyaxis left;
-plot(Npanels,CM_LE_N);
-ylabel('Cl');
+plot(Nplot,CMLE_vectorplot(1:end-1));
+ylabel('CMLE');
 %axis([0 1 -0.2 0.2])
     
 yyaxis right;
-plot(Npanels,error_cmle);
-ylabel('error');
-title("Error CMLE");
+plot(Nplot,error_CMLE);
+ylabel('Error CMLE');
+title("Error CMLE & CMLE vs number of panels");
