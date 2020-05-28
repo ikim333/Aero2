@@ -18,14 +18,15 @@ Xp(:,3) = h0;
 
 [a_ij_ge] = ground_effect (N, X, Ur, Xp, c, cl_alpha, K_v, a_ij);
 
-[Cl_ge, CL_ge] = CL_method_2 (a_ij_ge, b_i, c, dy, b, N, cl_0, cl_alpha, alpha, twist, s_wing);
-[CD_ge, CD_i_ge] = CD_method_2 (N, Cl_ge, cl_0, cl_alpha, alpha, twist, c, s_wing, dy, b);
+[Cl_ge, CL_ge] = CL_method_2 (a_ij_ge, b_i, c, dy, s_wing, N);
+[CD_ge, CD_i_ge, CD_v_ge] = CD_method_2 (N, Cl_ge, cl_0, cl_alpha, alpha, twist, c, s_wing, dy, b);
 
 %% RESULTS
 
 disp('Results por part 1.2')
 CL_ge
 CD_i_ge
+CD_v_ge
 CD_ge
 
 res = 'Plot results for exercise 1.2? (1 for YES, 0 for NO):  ';
@@ -37,8 +38,9 @@ figure(2);
 plot(Xp(:,2),Cl_ge(:));
 grid on;
 grid minor;
+title('Lift coefficient distribution');
 xlabel('y');
-ylabel('Cl_ge');
+ylabel('Cl');
 
 else
 end

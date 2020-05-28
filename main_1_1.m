@@ -49,8 +49,8 @@ c = zeros(N,1); %chord of each section
 % circulation
 [a_ij, b_i] = coefficients (N, c, U_inf, cl_0, cl_alpha, alpha, twist, Ur, X, Xp, K_v);
 
-[Cl, CL] = CL_method_2 (a_ij, b_i, c, dy, b, N, cl_0, cl_alpha, alpha, twist, s_wing);
-[CD, CD_i] = CD_method_2 (N, Cl, cl_0, cl_alpha, alpha, twist, c, s_wing, dy, b);
+[Cl, CL] = CL_method_2 (a_ij, b_i, c, dy, s_wing, N);
+[CD, CD_i, CDv] = CD_method_2 (N, Cl, cl_0, cl_alpha, alpha, twist, c, s_wing, dy, b);
 
 
 %% RESULTS
@@ -58,6 +58,7 @@ c = zeros(N,1); %chord of each section
 disp('Results por part 1.1')
 CL
 CD_i
+CDv
 CD
 
 res = 'Plot results for exercise 1.1? (1 for YES, 0 for NO):  ';
@@ -69,6 +70,7 @@ figure(1);
 plot(Xp(:,2),Cl(:));
 grid on;
 grid minor;
+title('Lift coefficient distribution');
 xlabel('y');
 ylabel('Cl');
 
