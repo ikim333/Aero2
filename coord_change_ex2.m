@@ -1,5 +1,7 @@
-function coord_punt_control=coord_change_ex2(control, x, s_panell,c_panell)
+%% Local coordinates from the panel
 
-    coord_punt_control=[((control(1)-x(1))*c_panell-(control(2)-x(2))*s_panell),((control(1)-x(1))*s_panell+(control(2)-x(2))*c_panell)];
+function ctrl_pan_local=coord_change_ex2(ctrl_points, X, pan_sin,pan_cos)
+
+    ctrl_pan_local=[((ctrl_points(1)-X(1))*pan_cos-(ctrl_points(2)-X(2))*pan_sin),((ctrl_points(1)-X(1))*pan_sin+(ctrl_points(2)-X(2))*pan_cos)];
     
 end

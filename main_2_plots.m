@@ -58,21 +58,25 @@ ylabel('C_m_L_E');
 %% CP at fixed alpha
 % Computation
 r = 3; % alpha = 3º
-[res1, res2, cp, ctrl_points,X] = results_ex2(r,alpha,N);
+[res1, res2, res3, cp, ctrl_points,X] = results_ex2(r,alpha,N);
+cp(30) = 0;
+
+xcp_chord_prcnt = res3*100;
 
 % Plot
 figure;
 grid on;
-xlabel('x/c');
+xlabel('X/C');
 
 yyaxis left;
 plot(X(:,1),X(:,2),'k', 'Linewidth', 2);
-ylabel('y/c');
-axis([0 1 -0.2 0.2])
+ylabel('Y/C');
+axis([0 1 -0.3 0.3])
     
 yyaxis right;
 plot(ctrl_points(:,1),-cp(:),'b');
 ylabel('-C_p');
+axis([0 1 -1 1.2])
 ax = gca;
 ax.YAxis(1).Color = 'k';
 ax.YAxis(2).Color = 'b';

@@ -1,4 +1,6 @@
-function [res1, res2, cp, ctrl_points, X] = results_ex2(r,alpha,N)
+%% CL, CMLE, CP, XCP and airfoil data computation
+
+function [res1, res2, res3, cp, ctrl_points, X] = results_ex2(r,alpha,N)
     %% Initial vectors definition
     
     Xc=linspace(1,0,N+1);   % Chord definition with n+1 nodes
@@ -138,11 +140,10 @@ function [res1, res2, cp, ctrl_points, X] = results_ex2(r,alpha,N)
        cl(i)=gamma(i)*pan_len(i);
     end
     
-    %Cl(r)=(2/(uinf*c))*sum(cl); %Calcul del coef.Sustentacio
     Cl(r)=(2/(uinf*c))*sum(cl);
     
     %% Pressure Coefficient Calculation
-    pan_tg_vect(:,:)=[pan_cos(:),-pan_sin(:)]; %Vector tangencial al panell
+    pan_tg_vect(:,:)=[pan_cos(:),-pan_sin(:)]; % Tangent vector to the panel
     v_tg=zeros(2*N,1);
     aij_gammaj_prod=zeros(2*N,1);
 
@@ -151,14 +152,14 @@ function [res1, res2, cp, ctrl_points, X] = results_ex2(r,alpha,N)
             if j==i
                 aij_gammaj_prod(j)=0;             
             else
-                aij_gammaj_prod(j)=A(i,j)*gamma(j); %Calcul del producte dels coeficients d'influencia ger gammama del panell
-            end                                     %necessari per calcular la velocitat tangencial
+                aij_gammaj_prod(j)=A(i,j)*gamma(j); % Here we calculate the product from the influence coefficients 
+            end                                     % at the panel gamma in order to obtain the tangencial velocity.
 
         end
             v_tg(i)=dot(u,pan_tg_vect(i,:))+sum(aij_gammaj_prod)+0.5*gamma(i);
     end
 
-    cp(:)=1-(v_tg(:)./uinf).^2; 
+    cp(:)=1-(v_tg(:)./uinf).^2;
     
     %% Momentum Coefficient at Leading Edge calculation
     
@@ -168,8 +169,12 @@ function [res1, res2, cp, ctrl_points, X] = results_ex2(r,alpha,N)
     end
     
     CmLE(r)=sum(cmLE);
+    xcp = abs(CmLE/Cl);
     
     res1=Cl(r);
-    res2=CmLE(r);  
+    res2=CmLE(r);
+    res3=xcp;
+    
+    
 end
 
