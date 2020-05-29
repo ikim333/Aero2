@@ -35,21 +35,20 @@ Xp = zeros(N,3); %coordinates of each section
 dy = zeros(N,1); %thickness of each section
 c = zeros(N,1); %chord of each section
 
-
-
-%to define each section, the cosine distribution will define each section
+%To define each section, the cosine distribution will define each section
 %coordinates:
-
 [X, Xp, c, twist, dy] = coordinates (N, b, twist_t, c_t, c_r);
 
-
 %% PART 1
-% lifting line method 2
+% Using the lifting line method 2
 
-% circulation
+% Compute the coefficients
 [a_ij, b_i] = coefficients (N, c, U_inf, cl_0, cl_alpha, alpha, twist, Ur, X, Xp, K_v);
 
+%Compute circulation, lift distribution and total lift coeffcient
 [Cl, CL] = CL_method_2 (a_ij, b_i, c, dy, s_wing, N);
+
+
 [CD, CD_i, CDv] = CD_method_2 (N, Cl, cl_0, cl_alpha, alpha, twist, c, s_wing, dy, b);
 
 

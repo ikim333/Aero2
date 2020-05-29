@@ -38,9 +38,9 @@ CL_ail = Cl_ail'*dy/b;
 
 %Compute roll moment
 
-Cr = Cl_ail.*Xp(:,2)/b;
+Roll_moment = 0.5.*dy.*c.*Cl_ail.*Xp(:,2);
 
-CR=sum(Cr)/b;
+CR=sum(Roll_moment)/(b*s_wing);
 
 % drag with ailerons computed next
 [CD_ail, CD_i_ail] = CD_method_2 (N, Cl_ail, cl_0, cl_alpha, alpha, twist, c, s_wing, dy, b);
